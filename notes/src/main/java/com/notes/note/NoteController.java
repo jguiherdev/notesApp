@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/notes")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 public class NoteController {
 
   @Autowired
@@ -71,9 +71,15 @@ public class NoteController {
         return new ResponseEntity<>(updatedNote, HttpStatus.OK);
     }
 
-    @GetMapping("notes/app-user/{id}")
+    @GetMapping("/app-user/{id}")
     public ResponseEntity<List<Note>> findAllByAppUserId(@PathVariable Long id) {
         List<Note> notes = noteService.findAllByAppUserId(id);
+        return new ResponseEntity<>(notes, HttpStatus.OK);
+    }
+
+    @GetMapping("/collection/{id}")
+    public ResponseEntity<List<Note>> findNotesByCollectionId(@PathVariable Long id){
+        List<Note> notes = noteService.findNotesByCollectionId(id);
         return new ResponseEntity<>(notes, HttpStatus.OK);
     }
 }

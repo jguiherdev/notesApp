@@ -27,14 +27,14 @@ public class Note {
     private Long id;
     
     @Column(name = "title", nullable = false, unique = true)
-    @Size(min = 6,max = 20, message = "{validation.name.size.invalid_size}")
+    @Size(min = 1,max = 50, message = "{validation.name.size.invalid_size}")
     private String title;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
     @Column(name = "description", nullable = false)
-    @Size(min = 6,max = 600, message = "{validation.name.size.invalid_size}")
+    @Size(min = 1,max = 600, message = "{validation.name.size.invalid_size}")
     private String description;
 
     @Column(name = "is_important", nullable = false)

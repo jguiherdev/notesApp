@@ -69,5 +69,9 @@ public class NoteService {
     public List<Note> findAllByAppUserId(Long id) {
         return noteRepository.findAllByAppUserId(id);
     }
+
+    public List<Note> findNotesByCollectionId(Long id) {
+        return noteRepository.findNotesByCollectionId(id);
+    }
     
 }

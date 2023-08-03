@@ -22,7 +22,7 @@ import com.notes.notfounderrortools.NotFoundValuesException;
 
 @RestController
 @RequestMapping("/collection")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CollectionController {
 
     @Autowired
