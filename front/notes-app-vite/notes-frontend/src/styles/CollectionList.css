@@ -1,0 +1,64 @@
+/* Estilos base para .na-collection-list */
+.na-collection-list {
+  max-width: 600px;
+  margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  padding: 20px;
+  background-color: #f2f2f2; /* Cambiar el color de fondo a un gris claro */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px; /* Ajustar el margen en todos los lados para separar del borde de la pantalla */
+}
+
+/* Estilos para .na-collection-list-collection */
+.na-collection-list-collection {
+  align-items: center; /* Alinear verticalmente los elementos */
+  justify-content: space-between; /* Distribuir los elementos a los extremos */
+  margin-bottom: 10px; /* Ajustar el margen inferior entre las colecciones */
+}
+
+.na-collection-list-add-collection-button {
+  position: absolute;
+  bottom: 20px; /* Ajustar la distancia del botón desde el borde inferior */
+  background-color: #007aff; /* Color azul similar al de Apple */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+}
+
+.na-collection-list-add-collection-button:hover {
+  background-color: #0056b3; /* Color azul más oscuro al pasar el cursor */
+}
+
+/* Estilo para el botón en estado de confirmación */
+.na-collection-list-add-collection-button.confirm {
+  background-color: #34c759; /* Color verde similar al de Apple para confirmación */
+}
+
+/* Estilo para el botón en estado de confirmación al pasar el cursor */
+.na-collection-list-add-collection-button:hover {
+  background-color: #30af53; /* Color verde más oscuro al pasar el cursor */
+}
+
+
+/* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
+@media screen and (max-width: 768px) {
+  .na-collection-list {
+    max-width: 100%; /* El ancho máximo será el ancho completo de la pantalla */
+    padding: 10px; /* Reduce el espaciado interno */
+    margin: 5px; /* Ajustar el margen en pantallas más pequeñas */
+  }
+
+  .na-collection-list-collection {
+    flex-direction: column; /* Colocar los elementos en columnas en pantallas pequeñas */
+    align-items: flex-start; /* Alinear los elementos a la izquierda en pantallas pequeñas */
+  }
+
+}
+
+  
