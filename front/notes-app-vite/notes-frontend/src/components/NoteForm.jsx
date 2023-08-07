@@ -6,7 +6,7 @@ const NoteForm = ({ onAddNote, selectedCollectionId }) => {
 
   const noteService = NoteService;
 
-  const [noteData, setNoteData] = useState({
+    const [noteData, setNoteData] = useState({
     title: '',
     date: '',
     description: '',

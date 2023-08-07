@@ -4,16 +4,9 @@ import CollectionService from '../services/CollectionService'
 import '../styles/CollectionList.css';
 
 const CollectionList = ({collectionList, onChangeSelected, collectionId, 
-  onHandleAddCollectionButtonClicked}) => {
+  onHandleAddCollectionButtonClicked, onDeleteCollection}) => {
 
   const collectionService = CollectionService
-
-  const handleDelete = (collectionId) => {
-    // Muestra el mensaje de confirmación de eliminación y luego elimina la colección
-    if (window.confirm('¿Seguro que quieres eliminar esta colección?')) {
-      onDeleteCollection(collectionId);
-    }
-  };
   
   // Estado para almacenar las colecciones y sus respectivas notas
   const [collections, setCollections] = useState([]);
@@ -44,8 +37,8 @@ const CollectionList = ({collectionList, onChangeSelected, collectionId,
       {collections.map((collection) => (
         <div key={collection.id} onClick={() => handleCollectionClick(collection.id)}>
           <Collection
-            name={collection.name}
-            onDelete={() => handleDelete(collection.id)}
+            collection={collection}
+            onDeleteCollection={onDeleteCollection}
           />
         </div>
       ))}

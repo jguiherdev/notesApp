@@ -1,24 +1,23 @@
-import { useState } from 'react';
 import "../styles/Collection.css"
+import CollectionService from '../services/CollectionService';
 
-const Collection = ({ name, onDelete, onClick }) => {
-  const [confirmDelete, setConfirmDelete] = useState(false);
+const Collection = ({ collection, onDeleteCollection }) => {
 
-  const handleDeleteClick = () => {
-    if (confirmDelete) {
-      onDelete();
-    } else {
-      setConfirmDelete(true);
+  const handleDeleteCollection = async () => {
+    try {
+      await CollectionService.deleteCollection(collection.id);
+      onDeleteCollection(collection.id);
+    } catch (error) {
+      console.log('Error al borrar la nota', error);
     }
   };
 
-
   return (
-    <button className="na-collection">
-      <span className="na-collection-name">{name}</span>
+    <div className="na-collection">
+      <button className='na-collection-delete-collection' onClick={handleDeleteCollection}>x</button>
+      <span className="na-collection-name">{collection.name}</span>
      
-    
-    </button>
+    </div>
   );
 };
 
