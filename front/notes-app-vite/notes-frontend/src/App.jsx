@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 import CollectionList from './components/CollectionList'
 import NoteList from './components/NoteList'
@@ -11,17 +11,27 @@ function App() {
   const [selectedCollectionId, setSelectedCollectionId] = useState(null);
   const [addCollectionButtonClicked, setAddCollectionButtonClicked] = useState()
 
+  //methods for collection
+
   const addCollection = (newCollection) => {
     setCollectionList([...collectionList, newCollection]);
-  }
-
-  const addNote=(newNote)=>{
-    setNoteList([...noteList, newNote])
   }
 
   const handleChangeSelectedCollection = (collectionId) => {
     setSelectedCollectionId(collectionId); // Actualizamos el estado con el id de la colección seleccionada
   };
+
+  const handleDeleteCollection = (collectionId) => {
+    // Filtramos la lista de notas para eliminar la nota con el ID especificado
+    const updatedCollectionList = collectionList.filter((collection) => collection.id !== collectionId);
+    setCollectionList(updatedCollectionList);
+  };
+
+  //methods for notes
+
+  const addNote=(newNote)=>{
+    setNoteList([...noteList, newNote])
+  }
 
   const handleDeleteNote = (noteId) => {
     // Filtramos la lista de notas para eliminar la nota con el ID especificado
@@ -29,23 +39,15 @@ function App() {
     setNoteList(updatedNoteList);
   };
 
-  const handleAddCollectionButtonClicked = () =>{
-    if(addCollectionButtonClicked){
-      setAddCollectionButtonClicked(false)
-    }else {
-      setAddCollectionButtonClicked(true)
-    } 
-  }
-
-  useEffect(() => {
-    console.log(selectedCollectionId); // Aquí obtendrás el valor actualizado de selectedCollectionId
-  }, [selectedCollectionId]);
-
+  const handleAddCollectionButtonClicked = () => {
+    setAddCollectionButtonClicked(addCollectionButtonClicked ? false : true);
+  };
+  
 
   return (
     <div className="na-main-container">
       <CollectionList collectionList={collectionList} onChangeSelected={handleChangeSelectedCollection} 
-      onHandleAddCollectionButtonClicked={handleAddCollectionButtonClicked}/>
+      onHandleAddCollectionButtonClicked={handleAddCollectionButtonClicked} onDeleteCollection={handleDeleteCollection}/>
       {addCollectionButtonClicked && <CollectionForm onAddCollection={addCollection}/>}
       <NoteList collectionId={selectedCollectionId} noteList={noteList} onDeleteNote={handleDeleteNote} />
      { selectedCollectionId && <NoteForm onAddNote={addNote} selectedCollectionId={selectedCollectionId}/>}

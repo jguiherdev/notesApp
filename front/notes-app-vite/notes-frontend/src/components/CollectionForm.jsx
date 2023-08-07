@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CollectionService from "../services/CollectionService";
 import '../styles/NoteForm.css'; 
 
@@ -24,7 +24,6 @@ const CollectionForm = ({ onAddCollection }) => {
     e.preventDefault();
     console.log("2")
 
-
     let isValidForm = true;
     const newErrors = {};
     console.log("3")
@@ -44,7 +43,8 @@ const CollectionForm = ({ onAddCollection }) => {
       const response = await collectionService.createCollection(collectionData);
       console.log('Nota creada:', response);
       setCollectionData({
-        name: ''
+        name: '',
+        appUserId:1
       });
       setErrors({});
       onAddCollection(response);

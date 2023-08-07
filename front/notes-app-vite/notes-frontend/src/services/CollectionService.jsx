@@ -17,7 +17,7 @@ class CollectionService {
         return data; // Devuelve la nota creada si es necesario
       } else {
         // Ocurrió un error al crear la nota
-        console.log('Error al crear la nota');
+        console.log('Error al crear la colección');
         // Realiza el manejo de errores necesario
         return null;
       }
@@ -50,7 +50,35 @@ class CollectionService {
       return null;
     }
   }
+
+  static async deleteCollection(collecionId) {
+    try {
+      const response = await fetch(`${API_URL}/collection/${collecionId}`,{
+        method:'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:''
+      });
+
+      if (response.status === 204) {
+        console.log("la colección se ha borrado de forma exitosa")
+        return true;
+      } else {
+        // Ocurrió un error al obtener las notas
+        console.log('Error al borrar la colección');
+        // Realiza el manejo de errores necesario
+        return null;
+      }
+    } catch (error) {
+      // Ocurrió un error de red u otro error
+      console.log('Error en la solicitud', error);
+      // Realiza el manejo de errores necesario
+      return null;
+    }
+  }
 }
+
 
 export default CollectionService;
 
