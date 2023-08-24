@@ -1,4 +1,8 @@
 import NoteService from "../services/NoteService"
+import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image, Button } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
+import { Chip } from "@nextui-org/react";
+import { CheckIcon } from "./reusable-components/CheckIcon";
 import "../styles/Note.css"
 
 const Note = ({ note, onDeleteNote }) => {
@@ -14,18 +18,33 @@ const Note = ({ note, onDeleteNote }) => {
     }
   };
 
-  return(
-    <div className="na-note-container">
-    <div className="na-note-container-header">
-    <h4>{note.title}</h4>
-    <p> {note.date}</p>
-    <button onClick={handleDeleteNote}>x</button>
-    </div>
-    <p>{note.collectionId.name}</p>
-    <div>{note.description}</div>
-    <p className={note.isImportant ? 'important' : ''}>Important: {note.isImportant ? 'Sí' : 'No'}</p>
-    <p className={note.isPinned ? 'pinned' : ''}>Pinned: {note.isPinned ? 'Sí' : 'No'}</p>
-    <p className={note.isCompleted ? 'completed' : ''}>Completed: {note.isCompleted ? 'Sí' : 'No'}</p>
+  return (
+    <div className="na-note">
+      <Card>
+        <CardHeader className="flex justify-between items-center text-justify">
+          {note.isPinned && (
+            <Chip color="secondary" variant="light" size="sm">
+              <small className="text-default-300">Pinned</small>
+            </Chip>
+          )}
+          <h4>{note.title}</h4>
+          <Spacer x={8} />
+          <small className="text-default-500">{note.date}</small>
+          <Button onClick={handleDeleteNote} size="sm" isIconOnly aria-posinset={CardHeader}>x</Button>
+        </CardHeader>
+        <Divider />
+        <CardBody className="text-justify">
+          {note.description}
+        </CardBody>
+        <CardFooter className="flex justify-between items-center">
+          {note.isImportant && (<Chip color="warning" variant="shadow">!</Chip>)}
+          {note.isCompleted && (<Chip
+            startContent={<CheckIcon size={18} />}
+            variant="faded"
+            color="success"
+          > </Chip>)}
+        </CardFooter>
+      </Card>
     </div>
   )
 }

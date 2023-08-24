@@ -1,16 +1,8 @@
-/* Estilos base para .na-note-list */
-.na-note-list {
-    max-width: 600px;
-    padding: 20px;
-    background-color: #753030;
-    border-radius: 5px;
-    margin: 1% 1% 1% 1%;
-  }
-  
-  /* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
-  @media screen and (max-width: 768px) {
-    .na-note-list {
-      max-width: 100%; /* El ancho máximo será el ancho completo de la pantalla */
-      padding: 10px; /* Reduce el espaciado interno */
-    }
-  }
+.na-note-list{
+    
+}
+
+.na-note-container{
+    display: flex;
+    flex-direction: column;
+}

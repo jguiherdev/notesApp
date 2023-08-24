@@ -1,69 +1,11 @@
-/* Estilo general del contenedor */
-.na-note-container {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f2f2f2; /* Color de fondo gris claro */
-    padding: 15px; /* Reducir el padding para hacer la nota más pequeña */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo para el título */
-  .na-note-container h4 {
-    font-size: 20px; /* Reducir el tamaño de fuente para hacer la nota más pequeña */
-    font-weight: bold;
-    margin: 0;
-    color: #333;
-  }
-  
-  /* Estilo para la colección */
-  .na-note-container p {
-    font-size: 14px; /* Reducir el tamaño de fuente para hacer el título de la colección más pequeño */
-    margin: 0;
-    color: #888; /* Cambiar el color del texto a un gris claro */
-  }
-  
-  /* Estilo para la fecha */
-  .na-note-container .na-note-container-header {
-    display: flex; /* Mostrar los elementos en línea */
-    align-items: center; /* Alinear verticalmente los elementos */
-    justify-content: space-between; /* Distribuir los elementos a los extremos */
-    margin-bottom: 5px; /* Ajustar el margen inferior entre el título y la colección */
-  }
-  
-  /* Estilo para la descripción */
-  .na-note-container div {
-    font-size: 16px;
-    margin: 10px 0;
-    color: #444;
-  }
-  
-  /* Estilos para las propiedades importantes */
-  .na-note-container p.important {
-    color: #f44336;
-  }
-  
-  /* Estilos para las propiedades fijadas (pinned) */
-  .na-note-container p.pinned {
-    color: #ff9800;
-  }
-  
-  /* Estilos para las propiedades completadas (completed) */
-  .na-note-container p.completed {
-    color: #4caf50;
-  }
-  
-  /* Media query para hacer el componente responsive */
-  @media screen and (max-width: 768px) {
-    .na-note-container {
-      font-size: 12px;
-      padding: 10px;
-    }
-    .na-note-container h4 {
-      font-size: 18px;
-    }
-    .na-note-container p {
-      margin: 0;
-    }
-  }
-  
+.na-note{
+    margin-top: 1.1em;
+    text-align: justify;
+    width: 20em;
+}
+
+.na-note-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,5 +1,11 @@
 .na-main-container{
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    height: 54.6em;
+    align-content: center;
+    align-items: baseline
+    
 }
 
+/* align-items: last baseline; */
+  

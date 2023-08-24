@@ -1,6 +1,5 @@
 package com.notes.collection;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class CollectionService {
     @Autowired
     private AppUserRepository appUserRepository;
 
-    public List<Collection> findAll() {
+    public Iterable<Collection> findAll() {
         return collectionRepository.findAll();
     }
 

@@ -4,12 +4,14 @@ import CollectionList from './components/CollectionList'
 import NoteList from './components/NoteList'
 import CollectionForm from './components/CollectionForm'
 import NoteForm from './components/NoteForm'
+import {Button, ButtonGroup} from "@nextui-org/button";
 
 function App() {
   const [collectionList, setCollectionList] = useState([]);
   const [noteList, setNoteList]= useState([]);
   const [selectedCollectionId, setSelectedCollectionId] = useState(null);
   const [addCollectionButtonClicked, setAddCollectionButtonClicked] = useState()
+  const [currentCollectionPage, setCurrentCollectionPage] = useState()
 
   //methods for collection
 
@@ -19,6 +21,7 @@ function App() {
 
   const handleChangeSelectedCollection = (collectionId) => {
     setSelectedCollectionId(collectionId); // Actualizamos el estado con el id de la colección seleccionada
+    setCurrentCollectionPage(0)
   };
 
   const handleDeleteCollection = (collectionId) => {
@@ -46,10 +49,13 @@ function App() {
 
   return (
     <div className="na-main-container">
-      <CollectionList collectionList={collectionList} onChangeSelected={handleChangeSelectedCollection} 
-      onHandleAddCollectionButtonClicked={handleAddCollectionButtonClicked} onDeleteCollection={handleDeleteCollection}/>
-      {addCollectionButtonClicked && <CollectionForm onAddCollection={addCollection}/>}
-      <NoteList collectionId={selectedCollectionId} noteList={noteList} onDeleteNote={handleDeleteNote} />
+      <CollectionList collectionList={collectionList}
+      onChangeSelected={handleChangeSelectedCollection} 
+      onHandleAddCollectionButtonClicked={handleAddCollectionButtonClicked}
+      onDeleteCollection={handleDeleteCollection}
+      onAddCollection={addCollection}/>
+
+      <NoteList collectionId={selectedCollectionId} noteList={noteList} onDeleteNote={handleDeleteNote} currentCollectionPage={currentCollectionPage} />
      { selectedCollectionId && <NoteForm onAddNote={addNote} selectedCollectionId={selectedCollectionId}/>}
     </div>
   )

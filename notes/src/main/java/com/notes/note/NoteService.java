@@ -16,7 +16,7 @@ public class NoteService {
     @Autowired
     private CollectionRepository collectionRepository;
     
-   public List<Note> findAll() {
+   public Iterable<Note> findAll() {
         return noteRepository.findAll();
     }
 
@@ -66,11 +66,11 @@ public class NoteService {
         return noteRepository.save(noteToSetAsImportant);
     }
     
-    public List<Note> findAllByAppUserId(Long id) {
+    public Iterable<Note> findAllByAppUserId(Long id) {
         return noteRepository.findAllByAppUserId(id);
     }
 
-    public List<Note> findNotesByCollectionId(Long id) {
+    public Iterable<Note> findNotesByCollectionId(Long id) {
         return noteRepository.findNotesByCollectionId(id);
     }
     

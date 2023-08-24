@@ -1,46 +1,9 @@
-/* Estilo para el contenedor de la colección */
-.na-collection {
-  display: flex;
-  align-items: center;
-  background-color: #f8f8f8;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+.na-collection-card{
+    margin: 0.3em;
+    cursor: pointer;
 }
 
-/* Estilo para el nombre de la colección */
-.na-collection-name {
-  flex-grow: 1;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+.na-collection-name{
+    text-align: center;
 }
 
-/* Estilo para el botón */
-.na-collection-button {
-  margin-left: 6%;
-  background-color: #007aff; /* Color azul similar al de Apple */
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.na-collection-button:hover {
-  background-color: #0056b3; /* Color azul más oscuro al pasar el cursor */
-}
-
-/* Estilo para el botón en estado de confirmación */
-.na-collection-button.confirm {
-  background-color: #34c759; /* Color verde similar al de Apple para confirmación */
-}
-
-/* Estilo para el botón en estado de confirmación al pasar el cursor */
-.na-collection-button.confirm:hover {
-  background-color: #30af53; /* Color verde más oscuro al pasar el cursor */
-}
