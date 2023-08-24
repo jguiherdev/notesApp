@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.notes.notfounderrortools.NotFoundValuesException;
@@ -36,9 +40,32 @@ public class CollectionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Collection>> findAll() {
-        List<Collection> collections = collectionService.findAll();
-        return new ResponseEntity<>(collections, HttpStatus.OK);
+    public ResponseEntity<Iterable<Collection>> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        Iterable<Collection> allCollections = collectionService.findAll();
+
+        List<Collection> collectionList = new ArrayList<>();
+        allCollections.forEach(collectionList::add);
+
+        collectionList.sort((c1, c2) -> Long.compare(c2.getId(), c1.getId()));
+
+        int start = page * size;
+        int end = Math.min(start + size, collectionList.size());
+        List<Collection> paginatedList = collectionList.subList(start, end);
+
+        return new ResponseEntity<>(paginatedList, HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> findAllAndCount() {
+    Iterable<Collection> collections = collectionService.findAll();
+    List<Collection> allCollections = new ArrayList<>(); // Declarar la lista con tipo genérico
+    for (Collection collection : collections) {
+        allCollections.add(collection);
+    }
+    return new ResponseEntity<>(allCollections.size(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

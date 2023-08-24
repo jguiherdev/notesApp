@@ -29,9 +29,9 @@ class NoteService {
     }
   }
 
-  static async getNotes(collectionId) {
+  static async getNotes(collectionId, page) {
     try {
-      const response = await fetch(`${API_URL}/notes/collection/${collectionId}`);
+      const response = await fetch(`${API_URL}/notes/collection/${collectionId}` + '?page=' + page);
 
       if (response.ok) {
         // Las notas se obtuvieron correctamente
@@ -74,6 +74,23 @@ class NoteService {
       // Ocurrió un error de red u otro error
       console.log('Error en la solicitud', error);
       // Realiza el manejo de errores necesario
+      return null;
+    }
+  }
+
+  static async getNumberOfNotes(collectionId) {
+    try {
+      const response = await fetch(`${API_URL}/notes/count/${collectionId}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        console.log('Error al obtener las notas');
+        return null;
+      }
+    } catch (error) {
+      console.log('Error en la solicitud', error);
       return null;
     }
   }

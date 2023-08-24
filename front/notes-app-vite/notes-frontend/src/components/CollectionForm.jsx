@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CollectionService from "../services/CollectionService";
-import '../styles/NoteForm.css'; 
+import { Textarea } from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
+import '../styles/NoteForm.css';
 
 const CollectionForm = ({ onAddCollection }) => {
   const collectionService = CollectionService;
@@ -44,7 +46,7 @@ const CollectionForm = ({ onAddCollection }) => {
       console.log('Nota creada:', response);
       setCollectionData({
         name: '',
-        appUserId:1
+        appUserId: 1
       });
       setErrors({});
       onAddCollection(response);
@@ -55,16 +57,18 @@ const CollectionForm = ({ onAddCollection }) => {
 
   return (
     <div className="collection-form">
-      <h2>Add Collection</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Collection Name:</label>
-        <input
+        <Textarea
+          variant="flat"
+          color="default"
+          labelPlacement="outside"
           type="text"
           id="name"
           value={collectionData.name}
           onChange={handleChange}
+          placeholder="Collection name..."
         />
-        <button type="submit">Add</button>
+        <Button type="submit" size="sm" color="secondary" variant="shadow">Add</Button>
       </form>
     </div>
   );

@@ -1,105 +1,52 @@
-/* Estilos para el switch */
-.na-note-form__checkbox {
-  display: none;
+.na-note-form-date-input {
+    border-radius: 5px;
 }
 
-/* Estilos para el slider (representación visual del switch) */
-.na-note-form__checkbox + .na-note-form__slider {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 24px;
-  background-color: #ccc;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.4s;
+
+.react-datepicker__header {
+    background-color: transparent !important;
+    font-weight: 600 !important;
+    border: transparent !important;
+    font-family: system-ui !important
 }
 
-/* Estilos para el slider cuando el switch está activado */
-.na-note-form__checkbox:checked + .na-note-form__slider {
-  background-color: #1a73e8; /* Color de Apple para switches activados */
+.react-datepicker__day {
+    color: #ECEDEE !important;
+    font-weight: 600 !important;
+    font-family: system-ui !important
+
 }
 
-/* Estilos para el slider cuando el switch está activado */
-.na-note-form__slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  top: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: transform 0.4s;
+.react-datepicker {
+    border-radius: 5% !important;
+    background-color: transparent !important;
 }
 
-/* Estilos para el slider cuando el switch está activado */
-.na-note-form__checkbox:checked + .na-note-form__slider:before {
-  transform: translateX(24px);
+.react-datepicker__current-month {
+    color: #ECEDEE !important;
+    font-weight: 100 !important;
 }
 
-/* Estilos para el formulario */
-.na-note-form {
-  max-width: 300px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9; /* Color de fondo de Apple */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.react-datepicker__day-name {
+    color: #ECEDEE !important;
+    font-weight: 100 !important;
 }
 
-/* Estilos para el título del formulario */
-.na-note-form__heading {
-  margin-top: 0;
-  text-align: center;
-  color: #1a73e8; /* Color de Apple para títulos */
+
+.react-datepicker__day.react-datepicker__day--keyboard-selected {
+    border: none;
+    border-radius: 7px;
+    background-color: #9353d3 !important;
 }
 
-/* Estilos para el campo de entrada de texto y el campo de fecha */
-.na-note-form__input[type="text"],
-.na-note-form__input[type="date"],
-.na-note-form__textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+    border-radius: 0.3rem !important;
+    background-color: #f5a524 !important;
 }
 
-/* Estilos para el campo de descripción (textarea) */
-.na-note-form__textarea {
-  resize: vertical;
-}
-
-/* Estilos para las etiquetas de los campos de entrada */
-.na-note-form__label {
-  font-weight: bold;
-  display: block;
-}
-
-/* Estilos para el botón de enviar (Add) */
-.na-note-form__button {
-  background-color: #1a73e8; /* Color de Apple para botones */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  width: 100%;
-}
-
-/* Estilos para el mensaje de error */
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-/* Estilos para dispositivos pequeños (aspecto responsivo) */
-@media screen and (max-width: 480px) {
-  .na-note-form {
-    max-width: 90%;
-  }
-}
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+    border-radius: 0.3rem;
+    background-color: #9353d3 !important;
+    color: #fff;
+}  

@@ -1,5 +1,7 @@
 package com.notes.note;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,12 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:5173")
 public class NoteController {
 
-  @Autowired
+    @Autowired
     private NoteService noteService;
 
     @GetMapping
-    public ResponseEntity<List<Note>> findAll() {
-        List<Note> notes = noteService.findAll();
+    public ResponseEntity<Iterable<Note>> findAll() {
+        Iterable<Note> notes = noteService.findAll();
         return new ResponseEntity<>(notes, HttpStatus.OK);
     }
 
@@ -41,7 +44,7 @@ public class NoteController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-   @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Note> findById(@PathVariable Long id) {
         Note note = noteService.findById(id);
         return new ResponseEntity<>(note, HttpStatus.OK);
@@ -72,14 +75,62 @@ public class NoteController {
     }
 
     @GetMapping("/app-user/{id}")
-    public ResponseEntity<List<Note>> findAllByAppUserId(@PathVariable Long id) {
-        List<Note> notes = noteService.findAllByAppUserId(id);
+    public ResponseEntity<Iterable<Note>> findAllByAppUserId(@PathVariable Long id) {
+        Iterable<Note> notes = noteService.findAllByAppUserId(id);
         return new ResponseEntity<>(notes, HttpStatus.OK);
     }
 
     @GetMapping("/collection/{id}")
-    public ResponseEntity<List<Note>> findNotesByCollectionId(@PathVariable Long id){
-        List<Note> notes = noteService.findNotesByCollectionId(id);
-        return new ResponseEntity<>(notes, HttpStatus.OK);
+    public ResponseEntity<Iterable<Note>> findNotesByCollectionId(@PathVariable Long id,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        Iterable<Note> notes = noteService.findNotesByCollectionId(id);
+        List<Note> allNotes = new ArrayList<>();
+
+        notes.forEach(allNotes::add);
+
+        Comparator<Note> noteComparator = (note1, note2) -> {
+            // Comparaciones según las condiciones dadas
+            if (note1.getIsPinned() && note1.getIsImportant() && !(note2.getIsPinned() && note2.getIsImportant())) {
+                return -1;
+            } else if (note2.getIsPinned() && note2.getIsImportant() && !(note1.getIsPinned() && note1.getIsImportant())) {
+                return 1;
+            } else if (note1.getIsPinned() && !note2.getIsPinned()) {
+                return -1;
+            } else if (note2.getIsPinned() && !note1.getIsPinned()) {
+                return 1;
+            } else if (note1.getIsImportant() && !note2.getIsImportant()) {
+                return -1;
+            } else if (note2.getIsImportant() && !note1.getIsImportant()) {
+                return 1;
+            } else if (!note1.getIsCompleted() && note2.getIsCompleted()) {
+                return -1;
+            } else if (!note2.getIsCompleted() && note1.getIsCompleted()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        };
+
+        allNotes.sort(noteComparator);
+
+        int start = page * size;
+        int end = Math.min(start + size, allNotes.size());
+        List<Note> paginatedList = allNotes.subList(start, end);
+
+        return new ResponseEntity<>(paginatedList, HttpStatus.OK);
+    }
+
+    @GetMapping("/count/{id}")
+    public ResponseEntity<Integer> findAllAndCountByCollectionId(
+        @PathVariable Long id
+    ) {
+    Iterable<Note> notes = noteService.findNotesByCollectionId(id);
+    List<Note> allNotes = new ArrayList<>();
+    for (Note note : notes) {
+        allNotes.add(note);
+    }
+    return new ResponseEntity<>(allNotes.size(), HttpStatus.OK);
     }
 }
